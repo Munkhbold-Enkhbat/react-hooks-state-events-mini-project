@@ -1,17 +1,7 @@
-import React, { useState } from "react"
+import React from "react"
 import Task from "./Task"
 
-function TaskList({ tasks }) {
-
-  const [updatedTasks, setUpdatedTasks] = useState(tasks)
-  
-  function handleButtonClick(str) {
-     const newTaskList = tasks.filter(task => {
-       return task.text !== str
-      })
-      console.log("NewList:", newTaskList);
-     setUpdatedTasks(newTaskList)
-  }
+function TaskList({ tasks, handleButtonClick }) {
 
   return (
     <div className="tasks">
@@ -22,7 +12,7 @@ function TaskList({ tasks }) {
             key={index} 
             category={task.category} 
             text={task.text}
-            handleButtonClick={() => handleButtonClick(task.text)}
+            handleButtonClick={handleButtonClick}
           />       
           )
         })
