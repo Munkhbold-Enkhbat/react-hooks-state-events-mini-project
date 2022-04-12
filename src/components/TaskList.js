@@ -2,23 +2,23 @@ import React, { useState } from "react"
 import Task from "./Task"
 
 function TaskList({ tasks }) { 
-
+  console.log("DisplaySelectedCategoryItems:", tasks);
   const [updatedTasks, setUpdatedTasks] = useState(tasks)
-
+  // handle Delete task
   function handleClick(str) {
-    setUpdatedTasks(updatedTasks.filter((updatedTasks) => updatedTasks.text !== str));    
+    setUpdatedTasks(updatedTasks.filter(updatedTask => updatedTask.text !== str));    
   }
 
   return (
     <div className="tasks">
       {
-        updatedTasks.map((updatedTasks, index) => {
+        updatedTasks.map((updatedTask, index) => {
           return( 
             <Task 
               key={index} 
-              category={updatedTasks.category} 
-              text={updatedTasks.text}
-              handleClick={() => handleClick(updatedTasks.text)}
+              category={updatedTask.category} 
+              text={updatedTask.text}
+              handleClick={() => handleClick(updatedTask.text)}
             />
           ) 
         })
