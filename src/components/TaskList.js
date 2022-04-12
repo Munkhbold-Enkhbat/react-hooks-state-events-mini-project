@@ -1,24 +1,24 @@
 import React, { useState } from "react"
 import Task from "./Task"
 
-function TaskList({ data }) { 
+function TaskList({ tasks }) { 
 
-  const [tasks, setTasks] = useState(data)
+  const [updatedTasks, setUpdatedTasks] = useState(tasks)
 
   function handleClick(str) {
-    setTasks(tasks.filter((task) => task.text !== str));    
+    setUpdatedTasks(updatedTasks.filter((updatedTasks) => updatedTasks.text !== str));    
   }
 
   return (
     <div className="tasks">
       {
-        tasks.map((task, index) => {
+        updatedTasks.map((updatedTasks, index) => {
           return( 
             <Task 
               key={index} 
-              category={task.category} 
-              text={task.text}
-              handleClick={() => handleClick(task.text)}
+              category={updatedTasks.category} 
+              text={updatedTasks.text}
+              handleClick={() => handleClick(updatedTasks.text)}
             />
           ) 
         })
