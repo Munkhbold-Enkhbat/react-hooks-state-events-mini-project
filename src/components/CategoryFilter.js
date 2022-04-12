@@ -1,23 +1,20 @@
-import React, { useState } from "react";
-// import Task from "./Task"
+import React from "react";
 
-function CategoryFilter({ categories }) {
+function CategoryFilter({ categories, selectedCategory, changeCategory }) {
 
-  const[isActiveClass, setActiveClass] = useState(false)
-  const[selectedCategory, setSelectedCategory] = useState("All")
+  const categoryButtons = categories.map((category, index) => {
+      const className = category === selectedCategory ? "selected" : null
+      return <button onClick={() => changeCategory(category)} className={className} key={index}>{category}</button>
+    })        
  
-  const handleSelect = (e) => {
-    setSelectedCategory(e.target.textContent)
-    setActiveClass(!isActiveClass)
-  }
 
-  const displaySelectedCategoryItems = categories.filter(items => {
-    if(selectedCategory === "All") {
-      return true
-    } else {
-      return items.category === selectedCategory
-    }
-  })
+  // const displaySelectedCategoryItems = categories.filter(items => {
+  //   if(selectedCategory === "All") {
+  //     return true
+  //   } else {
+  //     return items.category === selectedCategory
+  //   }
+  // })
 
   // const renderFilteredItems = displaySelectedCategoryItems.map(item => {
 
@@ -27,11 +24,7 @@ function CategoryFilter({ categories }) {
     <div className="categories">
       <h5>Category filters</h5>
       {/* render <button> elements for each category here */}
-      { 
-        categories.map((category, index) => {
-          return <button onClick={handleSelect} className={!isActiveClass ? "selected" : null} key={index}>{category}</button>
-        })        
-      }     
+         {categoryButtons}
     </div>
   );
 }
