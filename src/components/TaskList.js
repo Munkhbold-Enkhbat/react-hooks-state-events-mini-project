@@ -1,24 +1,25 @@
-import React, { useState } from "react"
+import React from "react"
 import Task from "./Task"
 
-function TaskList({ tasks }) { 
+function TaskList({ tasks, setTasks }) { 
+
   console.log("DisplaySelectedCategoryItems:", tasks);
-  const [updatedTasks, setUpdatedTasks] = useState(tasks)
+  
   // handle Delete task
   function handleClick(str) {
-    setUpdatedTasks(updatedTasks.filter(updatedTask => updatedTask.text !== str));    
+    setTasks(tasks.filter(tasks => tasks.text !== str));    
   }
 
   return (
     <div className="tasks">
       {
-        updatedTasks.map((updatedTask, index) => {
+        tasks.map((task, index) => {
           return( 
             <Task 
               key={index} 
-              category={updatedTask.category} 
-              text={updatedTask.text}
-              handleClick={() => handleClick(updatedTask.text)}
+              category={task.category} 
+              text={task.text}
+              handleClick={() => handleClick(task.text)}
             />
           ) 
         })
