@@ -12,7 +12,7 @@ console.log({ CATEGORIES, TASKS });
 function App() {
 
   // new task creation
-  const selectCategories = CATEGORIES.filter(category => category !== 'All')
+  // const selectCategories = CATEGORIES.filter(category => category !== 'All')
   const [newTask, setNewTask] = useState('')
   const [newCategory, setNewCategory] = useState('Code')
 
@@ -27,6 +27,10 @@ function App() {
     }
   })
   
+  function onTaskFormSubmit(updatedTasks) {    
+    setTasks(updatedTasks)
+  }
+
   return (
     <div className="App">
       <h2>My tasks</h2>
@@ -36,9 +40,9 @@ function App() {
         changeCategory={setCategory}
       />      
       <NewTaskForm 
-        selectCategories={selectCategories}
+        selectCategories={CATEGORIES}
         tasks={tasks}
-        setTasks={setTasks}
+        onTaskFormSubmit={onTaskFormSubmit}
         newTask={newTask}
         setNewTask={setNewTask}
         newCategory={newCategory}

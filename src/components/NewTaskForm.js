@@ -1,6 +1,6 @@
 import React from "react";
 
-function NewTaskForm({selectCategories, tasks, setTasks, newTask, setNewTask, newCategory, setNewCategory}) {
+function NewTaskForm({selectCategories, tasks, onTaskFormSubmit, newTask, setNewTask, newCategory, setNewCategory}) {
     
   function handleSelect(e) {
     setNewCategory(e.target.value)
@@ -12,11 +12,13 @@ function NewTaskForm({selectCategories, tasks, setTasks, newTask, setNewTask, ne
 
   function handleSubmit(e) {
     e.preventDefault()
+    // debugger
     const newTaskItem = {text: newTask, category: newCategory}
     const updatedTasks = [...tasks, newTaskItem]
-    setTasks(updatedTasks)
+    onTaskFormSubmit(updatedTasks)
     setNewTask('')
-    setNewCategory('Code')    
+    setNewCategory('Code')  
+    console.log("updatedTasks:", updatedTasks);  
   }
 
   return (
