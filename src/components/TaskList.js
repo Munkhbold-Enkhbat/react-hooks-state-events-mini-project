@@ -3,8 +3,6 @@ import Task from "./Task"
 
 function TaskList({ tasks, setTasks }) { 
 
-  console.log("DisplaySelectedCategoryItems:", tasks);
-  
   // handle Delete task
   function handleClick(str) {
     setTasks(tasks.filter(tasks => tasks.text !== str));    

@@ -11,12 +11,15 @@ console.log({ CATEGORIES, TASKS });
 
 function App() {
 
+  // new task creation
+  const selectCategories = CATEGORIES.filter(category => category !== 'All')
+  const [newTask, setNewTask] = useState('')
+  const [newCategory, setNewCategory] = useState('Code')
+
   const [category, setCategory] = useState("All")
   const [tasks, setTasks] = useState(TASKS)
 
   const displaySelectedCategoryItems = tasks.filter(item => {
-    // console.log("Item:", item);
-    // console.log("Category:", category);
     if(category === "All") {
       return true
     } else {
@@ -32,7 +35,15 @@ function App() {
         selectedCategory={category} 
         changeCategory={setCategory}
       />      
-      <NewTaskForm />
+      <NewTaskForm 
+        selectCategories={selectCategories}
+        tasks={tasks}
+        setTasks={setTasks}
+        newTask={newTask}
+        setNewTask={setNewTask}
+        newCategory={newCategory}
+        setNewCategory={setNewCategory}
+      />
       <TaskList tasks={displaySelectedCategoryItems} setTasks={setTasks}/>    
     </div>
   );
